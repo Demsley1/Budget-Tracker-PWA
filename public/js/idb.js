@@ -18,3 +18,11 @@ request.onsuccess = function(event){
 request.onerror = function(event){
     console.log(event.target.errorCode)
 };
+
+function saveRecord(data){
+    const transaction = db.transaction(['expense'], 'readwrite');
+
+    const depositObjectStore = transaction.objectStore('expense');
+
+    depositObjectStore.add(data);
+}
