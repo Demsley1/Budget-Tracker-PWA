@@ -7,3 +7,14 @@ request.onupgradeneeded = function(event) {
     // Object Store that acts like a SQL table, name of objectStore is "expense" and has a self incrementing primary key.
     db.createObjectStore('expense', { autoIncrement: true });
 }
+
+request.onsuccess = function(event){
+    db = event.target.result;
+
+    if(navigator.onLine){//uploadData();
+    }
+};
+
+request.onerror = function(event){
+    console.log(event.target.errorCode)
+};
