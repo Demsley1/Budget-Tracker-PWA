@@ -14,10 +14,15 @@ const FILES_TO_CACHE = [
     '../icons/icon-192x192.png',
     '../icons/icon-384x384.png',
     '../icons/icon-512x512.png'
-]
+];
 
-
-
+// Install the sercie worker
 self.addEventListener('install', function(e) {
-
-})
+    e.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            console.log("success");
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
+    self.skipWaiting();
+});
