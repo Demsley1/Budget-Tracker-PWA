@@ -16,7 +16,7 @@ const FILES_TO_CACHE = [
     '../icons/icon-512x512.png'
 ];
 
-// Install the sercie worker
+// Install the service worker
 self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
@@ -26,3 +26,21 @@ self.addEventListener('install', function(e) {
     );
     self.skipWaiting();
 });
+
+// listen to activate event and clear cache storage if already populated
+self.addEventListener('activate', function(e) {
+    e.waitUntil(
+        caches.keys().then( keyList => {
+            return Promise.all(
+                keyList.map(key => {
+                    if(key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                        console.log('removing old cache data', key);
+                        return caches.delete(key);
+                    }
+                })
+            )
+        })
+    )
+
+    self.clients.claim();
+}) 
