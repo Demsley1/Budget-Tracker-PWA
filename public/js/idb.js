@@ -11,8 +11,7 @@ request.onupgradeneeded = function(event) {
 request.onsuccess = function(event){
     db = event.target.result;
 
-    if(navigator.onLine){//uploadData();
-    }
+    if(navigator.onLine){uploadData()}
 };
 
 request.onerror = function(event){
@@ -26,3 +25,37 @@ function saveRecord(data){
 
     depositObjectStore.add(data);
 }
+
+function uploadData(){
+    const transaction = db.transaction(['expense'], 'readwrite');
+
+    const depositObjectStore = transaction.objectStore('expense');
+
+    const getAll = depositObjectStore.getAll();
+
+    getAll.onsuccess = function(){
+        if(getAll.result.length > 0){
+            fetch('/api/transaction/bulk', {
+                method: 'POST',
+                body: JSON.stringify(getAll.result),
+                headers: {
+                    Accept: 'application/json, text/plain, */*',
+                    'Content-type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(serverResponse => {
+                if(serverResponse.message) {
+                    throw new Error(serverResponse);
+                }
+
+                const transaction = db.transaction(['expense'], 'readwrite');
+                const depositObjectStore = transaction.objectStore('expense')
+                depositObjectStore.clear();
+                alert('All saved expenses have been submitted!');
+            }).catch(err => console.log(err));
+        }
+    }
+}
+
+// listen for app coming back online
+window.addEventListener('online', uploadData)
