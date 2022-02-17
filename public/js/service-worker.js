@@ -2,8 +2,9 @@ const CACHE_NAME = 'budget-tracker-cache-v1';
 const DATA_CACHE_NAME = 'budget-data-cache-v1';
 
 const FILES_TO_CACHE = [
+    '../',
     '../index.html',
-    '../css/style.css',
+    '../css/styles.css',
     '../js/idb.js',
     '../js/index.js',
     '../icons/icon-72x72.png',
@@ -32,9 +33,9 @@ self.addEventListener('activate', function(e) {
     e.waitUntil(
         caches.keys().then( keyList => {
             return Promise.all(
-                keyList.map(key => {
+                keyList.filter(key => {
                     if(key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-                        console.log('removing old cache data', key);
+                        console.log('removing old cache data: ', key);
                         return caches.delete(key);
                     }
                 })
@@ -43,4 +44,34 @@ self.addEventListener('activate', function(e) {
     )
 
     self.clients.claim();
-}) 
+});
+
+self.addEventListener('fetch', (e) => {
+    console.log('fetch request: '+ e.request.url)
+    if(e.request.url.includes('/api/')){
+        e.respondWith(
+            caches.open(DATA_CACHE_NAME)
+            .then(cache => {
+                return fetch(e.request)
+                .then(response => {
+                    if(response.status === 200){
+                        cache.put(e.request.url, response.clone());
+                    }
+                    return response;
+                }).catch(err => {
+                    console.log("Network is Offline")
+                    return alert("User is offline right now!! Data is being saved to the local storage until you get back online, then it will be sent to the server.")
+                })
+            }).catch(err => console.log(err))
+        );
+        return;
+    }
+
+    e.respondWith(
+        caches.match(e.request).then(request => {
+            if(request){
+                return request || fetch(e.request) 
+            }
+        })
+    )
+})
