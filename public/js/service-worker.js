@@ -31,18 +31,17 @@ self.addEventListener('install', function(e) {
 // listen to activate event and clear cache storage if already populated
 self.addEventListener('activate', function(e) {
     e.waitUntil(
-        caches.keys().then( keyList => {
+        cache.keys().then(keyList => {
             return Promise.all(
-                keyList.filter(key => {
+                keyList.map(key => {
                     if(key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
                         console.log('removing old cache data: ', key);
                         return caches.delete(key);
                     }
                 })
-            )
+            );
         })
-    )
-
+    );
     self.clients.claim();
 });
 
