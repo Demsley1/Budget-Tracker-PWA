@@ -48,6 +48,8 @@
   <script type="text/javascript">
     (function() {
       if("serviceWorker" in navigator){
+        /* Service Worker is registered here to public directory. Has to work from there so
+        manifest start page is reading the added service-worker script from the same location.*/
         navigator.serviceWorker.register("./service-worker.js")
           .then(() => console.log("Service Worker registered"))
           .catch(err => console.log("Service Worker registration failed:", err))
