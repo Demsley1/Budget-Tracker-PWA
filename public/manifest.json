@@ -46,6 +46,7 @@
     "theme_color": "#ffffff",
     "background_color": "#5ec37f",
     "description": "App for when I want to track my budget online, and offline.",
-    "start_url": "/",
+    "scope": "/",
+    "start_url": "/index.html",
     "display": "standalone"
   }
