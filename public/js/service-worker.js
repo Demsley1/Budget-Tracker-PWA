@@ -32,7 +32,7 @@ self.addEventListener('install', function(e) {
 // listen to activate event and clear cache storage if already populated
 self.addEventListener('activate', function(e) {
     e.waitUntil(
-        cache.keys().then(keyList => {
+        caches.keys().then(keyList => {
             return Promise.all(
                 keyList.map(key => {
                     if(key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
