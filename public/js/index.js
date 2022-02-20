@@ -134,9 +134,9 @@ function sendTransaction(isAdding) {
       amountEl.value = "";
     }
   })
-  .catch(err => {
+  .catch(() => {
     // fetch failed, so save in indexed db
-    console.log(err);
+    alert("Success. Your data is being saved Locally until you are back online")
     saveRecord(transaction);
 
     // clear form

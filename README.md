@@ -1,7 +1,7 @@
 # Budget-Tracker-PWA [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
   ## Description 
 
-  With the advance of technology and of the internet many users including myself find ourselves using our phones and tablets to browse the web. This has caused new inovations and changesin web-dev from all facets, for instance in design the CSS is changed to fit all screen sizes or at least adapt when a screen grows larger and smaller. For users that like to view their favorite site on a device like a phone and cant gurantee they alwas have great connection a PWA website might just be the key. It offers all websites uses but now it's installable, looks the same, and even aves current user data when a user goes offline.
+  With the advance of technology and of the internet many users, including myself find ourselves using our phones and tablets to browse the web. This has caused new inovations and changes in Web-dev from all facets, for instance in design the CSS is changed to fit all screen sizes or at least adapt when a screen grows larger and smaller. For users that like to view their favorite site on a device like a phone and can't gaurantee they always have great connection then a PWA website might just be the key. It offers all websites user's but now it's installable, looks the same, and even saves current user data when a user goes offline.
 
   ## Table of Contents
   In here you will find links to each section of this projects readme
@@ -14,11 +14,11 @@
 
   ## *Installation*
 
-  This app is hosted live on heroku, to access it click the link provided in this readme. Also Using the link to my GitHub repo you can view the files and download them onto your local system to give them a go.
+  This app is hosted live on heroku, so to access it click the link provided in this readme. Also Using the link to my GitHub repo you can view the files and download them onto your local system to view the file structure of this project.
 
   ## Usage 
 
-  When you are out spending and earning you want to keep track of how much money is coming and going. This app lets you do just that by submitting a name of the deposit and amount then when you click add deposit, it stores the value in the database, and shows on a graph howm uch is gained and lost. The same works for withdrawals, just click the deduct amount button to remove an amount of money from the adjusted budget. It will work online, and offline if you have a not so stable connection to the internet. Last but not least if you prefer to just use it from the home-screen of your phone it is a downloadable app as well. 
+  When you are out spending and earning you want to keep track of how much money is coming and going. This app lets you do just that by submitting a name of the deposit and amount then when you click add deposit, it stores the value in the database, and shows on a graph how much is gained and lost. The same works for withdrawals, just click the deduct amount button to remove an amount of money from the adjusted budget. It will work online, and offline if you have a not so stable connection to the internet. At the very least if prefer to just use it from the home-screen of your phone it is a downloadable app as well. 
 
   ## Screenshots/Links
 

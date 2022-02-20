@@ -9,7 +9,7 @@ request.onupgradeneeded = function(event) {
     db.createObjectStore('expense', { autoIncrement: true });
 }
 
-// run the funciton to send stored data to server if nvigator shows that it is back online.
+// run the funciton to send stored data to server if navigator shows that it is back online.
 request.onsuccess = function(event){
     db = event.target.result;
 
@@ -68,4 +68,6 @@ function uploadData(){
 }
 
 // listen for app coming back online
-window.addEventListener('online', uploadData)
+window.addEventListener('online', uploadData);
+// listen for app going offline
+window.addEventListener('offline', () => alert('User has lost connection to the server, Files are being served form local cache.'))

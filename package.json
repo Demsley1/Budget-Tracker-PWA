@@ -1,7 +1,7 @@
 {
   "name": "budget-tracker-pwa",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use this app to keep track of budget and expenses",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/Demsley1/Budget-Tracker-PWA.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Budget", "Tracker", "PWA", "Installable"],
+  "author": "Demsley1",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Demsley1/Budget-Tracker-PWA/issues"
